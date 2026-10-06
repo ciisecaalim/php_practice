@@ -1,20 +1,18 @@
 
 <?php
-
-// ==========================================
+ 
 // PAGE STYLE
-// ==========================================
+ 
 
 echo "<div style='background-color:#f2f6ff; padding:20px; font-family:Arial;'>";
 
 echo "<h2 style='color:#1e3a8a;'>PHP Assignment 1</h2>";
 
-
-// ==========================================
+ 
 // QUESTION 1
 // Compare three numbers and find greatest
 // and smallest number
-// ==========================================
+ 
 
 $a = 20;
 $b = 10;
@@ -45,11 +43,11 @@ echo "Smallest number: $smallest";
 echo "</div>";
 
 
-// ==========================================
+ 
 // QUESTION 2
 // Check if number is divisible by 3, 5,
 // both, or none
-// ==========================================
+ 
 
 $number = 15;
 
@@ -77,11 +75,11 @@ if ($number % 3 == 0 && $number % 5 == 0) {
 echo "</div>";
 
 
-// ==========================================
+ 
 // QUESTION 3
 // Print odd numbers from 2 to 20
 // Print even numbers from 35 to 7
-// ==========================================
+ 
 
 echo "<div style='background-color:white; padding:15px; margin:10px;'>";
 echo "<h3 style='color:blue;'>Question 3</h3>";
@@ -110,12 +108,11 @@ for ($i = 35; $i >= 7; $i--) {
 
 echo "</div>";
 
-
-// ==========================================
+ 
 // QUESTION 4
 // Print numbers divisible by 2 and 5
 // from 50 to 2
-// ==========================================
+ 
 
 echo "<div style='background-color:white; padding:15px; margin:10px;'>";
 echo "<h3 style='color:blue;'>Question 4</h3>";
@@ -130,12 +127,11 @@ for ($i = 50; $i >= 2; $i--) {
 
 echo "</div>";
 
-
-// ==========================================
+ 
 // QUESTION 5
 // Reverse a given number
 // Do not use strrev()
-// ==========================================
+ 
 
 $number = 12345;
 $reverse = 0;
@@ -158,10 +154,10 @@ echo "Reverse number: $reverse";
 echo "</div>";
 
 
-// ==========================================
+ 
 // QUESTION 6
 // Find LCM of two positive numbers
-// ==========================================
+ 
 
 $a = 8;
 $b = 12;
@@ -178,12 +174,10 @@ echo "<div style='background-color:white; padding:15px; margin:10px;'>";
 echo "<h3 style='color:blue;'>Question 6</h3>";
 echo "LCM of $a and $b is: $lcm";
 echo "</div>";
-
-
-// ==========================================
+ 
 // QUESTION 7
 // Find HCF of two numbers
-// ==========================================
+ 
 
 $a = 18;
 $b = 24;
@@ -205,12 +199,11 @@ echo "<h3 style='color:blue;'>Question 7</h3>";
 echo "HCF of $a and $b is: $hcf";
 echo "</div>";
 
-
-// ==========================================
+ 
 // QUESTION 8
 // Multiplication table from 1 to 12
 // Using nested loops
-// ==========================================
+ 
 
 echo "<div style='background-color:white; padding:15px; margin:10px;'>";
 echo "<h3 style='color:blue;'>Question 8</h3>";
@@ -254,11 +247,10 @@ echo "</table>";
 
 echo "</div>";
 
-
-// ==========================================
+ 
 // QUESTION 9
 // Check whether a number is prime or non-prime
-// ==========================================
+ 
 
 $number = 17;
 $count = 0;
@@ -287,12 +279,11 @@ if ($count == 2) {
 }
 
 echo "</div>";
+ 
 
-
-// ==========================================
 // QUESTION 10
 // Print prime numbers from 10 to 50
-// ==========================================
+ 
 
 echo "<div style='background-color:white; padding:15px; margin:10px;'>";
 echo "<h3 style='color:blue;'>Question 10</h3>";
