@@ -1,3 +1,4 @@
+```php
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,63 +11,114 @@
     <form method="post" enctype="multipart/form-data">
         <label for="">Name: </label>
         <input type="text" name="name" placeholder="Enter your fullname"> <br><br>
-        
+
         <label for="">Profile</label>
-        <input type="file" name="profile" > <br> <br>
+        <input type="file" name="profile"> <br><br>
+
+        <!-- Upload Document -->
+
+        <h3>Upload Document</h3>
+
+        <!-- Upload CV -->
+
+        <label>CV (PDF only, maximum size 1MB)</label>
+        <br><br>
+        <input type="file" name="cv" accept=".pdf">
+        <br><br>
+
+        <!-- Upload Certificate -->
+
+        <label>Certificate (PDF, JPG, JPEG, PNG - maximum 1MB)</label>
+        <br><br>
+        <input type="file" name="certificate" accept=".pdf,.jpg,.jpeg,.png">
+        <br><br>
 
         <input type="submit" name="submit" value="Register"> <br>
     </form>
 </body>
 </html>
 
+
+
+
 <?php
+
+if (isset($_POST["submit"])) {
+
+    if (isset($_FILES["cv"]) && $_FILES["cv"]["error"] == 0 ) {
+        $extension = strtolower(pathinfo($_FILES["cv"]["name"], PATHINFO_EXTENSION));
+
+        if ($extension == "pdf") {
+            echo "CV: " . $_FILES["cv"]["name"] . "<br>";
+        } else {
+            echo "CV must be PDF only.<br>";
+        }
+    }
+
+    if (isset($_FILES["certificate"]) && $_FILES["certificate"]["error"] == 0) {
+        $extension = strtolower(pathinfo($_FILES["certificate"]["name"], PATHINFO_EXTENSION));
+
+        if (in_array($extension, array("pdf", "jpg", "jpeg", "png"))) {
+            echo "Certificate: " . $_FILES["certificate"]["name"] . "<br>";
+        } else {
+            echo "Certificate must be PDF, JPG, JPEG, or PNG only.<br>";
+        }
+    }
+}
+
+
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
 
 echo "<h2> Register Information </h2>";
 
 if (isset($_POST["submit"])) {
-        echo "File Information <br>";
-        echo "Name: " . $_FILES["profile"]["name"]  . "<br>";
-        echo "Size: " . $_FILES["profile"]["size"]  . "<br>";
-        echo "Temp: " . $_FILES["profile"]["tmp_name"]  . "<br>";
-        echo "Type: " . $_FILES["profile"]["type"]  . "<br>";
+    echo "File Information <br>";
+    echo "Name: " . $_FILES["profile"]["name"] . "<br>";
+    echo "Size: " . $_FILES["profile"]["size"] . "<br>";
+    echo "Temp: " . $_FILES["profile"]["tmp_name"] . "<br>";
+    echo "Type: " . $_FILES["profile"]["type"] . "<br>";
 
-        echo "<br>";
+    echo "<br>";
 
-        // if (move_uploaded_file($_FILES["profile"]["tmp_name"], "Images/" . $_FILES["profile"]["name"])) {
-        //     echo "File has been uploaded successfully";
-        // }
-        // else {
-        //     echo "File has not been uploaded successfully";
-        // }
+    // if (move_uploaded_file($_FILES["profile"]["tmp_name"], "Images/" . $_FILES["profile"]["name"])) {
+    //     echo "File has been uploaded successfully";
+    // }
+    // else {
+    //     echo "File has not been uploaded successfully";
+    // }
 
-        $filename = explode (".", $_FILES["profile"]["name"]);
-        $extension = end($filename);
-        $extensions = array("png", "jpg", "jpeg", "gif");
-        $extension = strtolower($extension);
-        
-        if ($_FILES["profile"]["size"] <= 2097152) {
-            if (in_array($extension, $extensions)) {
-                if (!file_exists("Images/" . $_POST["name"] . "." .  $extension)) {
-                    if (move_uploaded_file($_FILES["profile"]["tmp_name"], "Images/" . $_POST["name"] . "." .  $extension)) {
-                        echo "The File has been uploaded successfully <br>";
-                        echo "Your name is: " . $_POST["name"] . "<br>";
-                        echo '<img src="' . "Images/" . $_POST["name"] . "." .  $extension . '" width="100px" alt="">' . "<br>";
-                    }
-                    else {                    
-                        echo "The File has not been uploaded successfully";
-                    }
+    $filename = explode(".", $_FILES["profile"]["name"]);
+    $extension = end($filename);
+    $extensions = array("png", "jpg", "jpeg", "gif");
+    $extension = strtolower($extension);
+
+    if ($_FILES["profile"]["size"] <= 2097152) {
+        if (in_array($extension, $extensions)) {
+            if (!file_exists("Images/" . $_POST["name"] . "." . $extension)) {
+                if (move_uploaded_file($_FILES["profile"]["tmp_name"], "Images/" . $_POST["name"] . "." . $extension)) {
+                    echo "The File has been uploaded successfully <br>";
+                    echo "Your name is: " . $_POST["name"] . "<br>";
+                    echo '<img src="' . "Images/" . $_POST["name"] . "." . $extension . '" width="100px" alt="">' . "<br>";
                 }
                 else {
-                    echo "This file " . "Images/" . $_POST["name"] . "." .  $extension . " already exist";
+                    echo "The File has not been uploaded successfully";
                 }
             }
             else {
-                echo "This file extension ($extension) is not allowed";
+                echo "This file " . "Images/" . $_POST["name"] . "." . $extension . " already exist";
             }
         }
         else {
-            echo "This File Size " . $_FILES["profile"]["size"] . " is too big";
+            echo "This file extension ($extension) is not allowed";
         }
+    }
+    else {
+        echo "This File Size " . $_FILES["profile"]["size"] . " is too big";
+    }
 }
 
 ?>
+```

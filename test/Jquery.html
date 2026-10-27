@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+    <p id="message">welcome to php</p>
+    <button id="btn" ">click me</button>
+
+<!-- //using javaScript -->
+<!-- 
+<script> 
+    function changeText(){
+        let message = document.getElementById("message");
+
+        if(message.innerHTML === "welcome to php") {
+            message.innerHTML = "welcome to js";
+        } else {
+            message.innerHTML = "welcome to php";
+        }
+    }
+</script> -->
+
+
+
+<!-- using jQuery -->
+ 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script>
+    $ ("#btn").on("click", function(){
+        $("#message").text("welcome to jQuery");
+    })
+</script>
+
+    
+</body>
+</html>
