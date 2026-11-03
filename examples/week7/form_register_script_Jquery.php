@@ -5,6 +5,7 @@ $errMsg = "";
 $nameErr = "";
 $emailErr = "";
 $facultyErr = "";
+$pobErr = ""; // Added Place of Birth error message storage.
 
 if (isset($_POST["submit"])) {
 
@@ -15,6 +16,8 @@ if (isset($_POST["submit"])) {
         $nameErr = "* Please fill fullname field!";
     }
 
+    
+
     if (empty($_POST["email"])) {
         $success = false;
         $emailErr = "* Please fill email field!";
@@ -24,6 +27,12 @@ if (isset($_POST["submit"])) {
         $success = false;
         $facultyErr = "* Please select faculty!";
     }
+
+    if (empty($_POST["pob"])) {
+        $success = false;
+        $pobErr = "* Please fill Place of Birth field!"; // Added server-side Place of Birth validation message.
+    }
+    
 
     if (!$success) {
         $errMsg = "Please fill all required fields.";
@@ -131,8 +140,9 @@ if (isset($_POST["submit"])) {
 
                             <!-- Place of Birth -->
                             <div class="mb-3">
-                                <label for="pob" class="form-label">Place of Birth</label>
+                                <label for="pob" class="form-label">Place of Birth <span class="text-danger">*</span></label> <!-- Marked Place of Birth as required. -->
                                 <input type="text" class="form-control" id="pob" name="pob" placeholder="Enter your place of birth" value="<?php if (!$success && isset($_POST["pob"])) { echo $_POST["pob"]; } ?>">
+                                <div id="pobError" class="text-danger small"><?php echo $pobErr; ?></div> <!-- Added Place of Birth error display. -->
                             </div>
 
                             <!-- Gender -->
@@ -261,6 +271,14 @@ $(document).ready(function() {
             event.preventDefault();
         }
 
+        //Place of Birth validation before submission.
+        if ($("#pob").val().trim() === "") {
+            $("#pob").removeClass("is-valid").addClass("is-invalid");
+            $("#pobError").text("Please fill Place of Birth field!");
+            event.preventDefault();
+        }
+
+        
         if (!$("input[name='gender']:checked").val()) {
             $("#genderError").text("Please select gender!");
             event.preventDefault();
@@ -279,7 +297,7 @@ $(document).ready(function() {
     $("#studentForm").on("reset", function() {
         setTimeout(function() {
             $(".form-control, .form-select").removeClass("is-valid is-invalid");
-            $("#nameError, #emailError, #facultyError").text("");
+            $("#nameError, #emailError, #pobError, #facultyError").text(""); // Clear the Place of Birth error message on reset.
         }, 0);
     });
 
